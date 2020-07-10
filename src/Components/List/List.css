@@ -55,11 +55,27 @@
 .dropdown-menu {
   max-height: 200px;
   overflow-y: auto;
-  width: 180px;;
+  width: 180px;
 }
 
 @media only screen and (max-width: 600px) {
   .list-comp {
     width: 320px;
+  }
+  .video-container {
+    flex-direction: column !important;
+    align-items: center;
+  }
+  .video-container > img {
+    margin-bottom: 10px;
+  }
+  .video-container > div > .dropdown {
+    margin-bottom: 10px;
+  }
+  .video-container > div > a {
+    margin-bottom: 10px;
+  }
+  .video-container > div > button {
+    margin-bottom: 10px;
   }
 }

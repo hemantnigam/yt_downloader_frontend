@@ -61,7 +61,7 @@ class List extends React.Component {
   render() {
     return (
       <div className="list-comp">
-        <div>
+        <div className="pl-3">
           <div className="tab">
             <button
               className="tablinks"
@@ -81,7 +81,7 @@ class List extends React.Component {
               <span>Title:</span>
               <span>{this.props.data.title}</span>
             </div>
-            <div className="pt-2 d-flex justify-content-between">
+            <div className="video-container pt-2 d-flex justify-content-between">
               <img className="mr-4" alt="thumbnail not available" src={this.props.data.thumbnail.url} />
               <div className="d-flex flex-column justify-content-between">
                 <div className="dropdown">

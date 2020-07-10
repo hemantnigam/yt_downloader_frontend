@@ -15,7 +15,9 @@ class Home extends React.Component {
     };
     this.inputRef = React.createRef();
   }
-
+  componentDidMount(){
+    this.inputRef.current.focus();
+  }
   getURL = () => {
     if (this.inputRef.current.value === "") {
       this.setState({
