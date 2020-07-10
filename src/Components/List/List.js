@@ -106,7 +106,7 @@ class List extends React.Component {
                             onClick={() => this.selectFormat(video)}
                             key={index}
                             className="dropdown-item d-flex justify-content-between align-items-center"
-                            href="#"
+                            href={() => false}
                           >
                             {video.qualityLabel} - {video.container}
                             {!video.audioCodec && (
@@ -122,6 +122,7 @@ class List extends React.Component {
                 </div>
                 <a
                   href={this.state.selectedVideo}
+                  rel="noopener noreferrer"
                   target="_blank"
                   className="btn btn-secondary btn-sm"
                 >
