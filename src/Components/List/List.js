@@ -69,20 +69,20 @@ class List extends React.Component {
             >
               Video
             </button>
-            <button
+            {/* <button
               className="tablinks"
               onClick={(event) => this.openCity(event, "Audio")}
             >
               Audio
-            </button>
+            </button> */}
           </div>
           <div id="Video" className="tabcontent">
-            <div className="p10">
+            <div>
               <span>Title:</span>
               <span>{this.props.data.title}</span>
             </div>
-            <div className="p10 d-flex justify-content-between">
-              <img alt="thumbnail not available" src={this.props.data.thumbnail.url} />
+            <div className="pt-2 d-flex justify-content-between">
+              <img className="mr-4" alt="thumbnail not available" src={this.props.data.thumbnail.url} />
               <div className="d-flex flex-column justify-content-between">
                 <div className="dropdown">
                   <button
