@@ -1,6 +1,9 @@
 .instructions{
     margin-bottom: 100px;
 }
+.instructions p{
+  text-align: center;
+}
 .instructions h1 {
   text-align: center;
 }
