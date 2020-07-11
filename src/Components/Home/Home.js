@@ -1,7 +1,9 @@
 import React from "react";
 import axios from "axios";
+import ytpl from "ytpl";
 import "./Home.css";
 import List from "../List/List";
+import Playlist from "../Playlist/Playlist";
 
 class Home extends React.Component {
   constructor(props) {
@@ -9,13 +11,16 @@ class Home extends React.Component {
     this.state = {
       videoInfo: {},
       url: "",
-      gotInfo: false,
+      gotVideoInfo: false,
       startLoader: false,
       hasError: true,
+      isVideoTypeLink: false,
+      playListInfo: {},
+      gotPlayListInfo: false,
     };
     this.inputRef = React.createRef();
   }
-  componentDidMount(){
+  componentDidMount() {
     this.inputRef.current.focus();
   }
   getURL = () => {
@@ -33,8 +38,53 @@ class Home extends React.Component {
     });
   };
 
+  checkLinkType = () => {
+    this.setState({ isVideoTypeLink: false, playlistInfo: {}, videoInfo: {} });
+    const url = this.inputRef.current.value;
+    if (ytpl.validateURL(url)) {
+      this.setState({ isVideoTypeLink: false });
+      this.getPlaylistInfo();
+    } else {
+      this.setState({ isVideoTypeLink: true });
+      this.getVideoInfo();
+    }
+  };
+
+  adjustClipHeight = (height) => {
+    document.getElementsByClassName("home")[0].style.height = `${height}px`;
+  };
+
+  getPlaylistInfo = async () => {
+    this.setState({ gotPlayListInfo: false, startLoader: true });
+    const playListID = await ytpl.getPlaylistID(this.inputRef.current.value);
+
+    axios
+      .get("https://warm-ocean-51847.herokuapp.com/playlistInfo", {
+        params: {
+          playListID,
+        },
+      })
+      .then((response) => response.data)
+      .then((data) => {
+        console.log(data);
+        this.setState({
+          playListInfo: data,
+          gotPlayListInfo: true,
+          startLoader: false,
+        });
+        if (window.screen.availWidth > 600) this.adjustClipHeight(600);
+        else this.adjustClipHeight(750);
+      })
+      .catch((e) => {
+        this.setState({ gotPlayListInfo: false, startLoader: false });
+        if (window.screen.availWidth > 600) this.adjustClipHeight(400);
+        else this.adjustClipHeight(350);
+        console.log(e);
+      });
+  };
+
   getVideoInfo = () => {
-    this.setState({ getInfo: false, startLoader: true });
+    this.setState({ gotVideoInfo: false, startLoader: true });
     axios
       .get("https://warm-ocean-51847.herokuapp.com/getInfo", {
         params: {
@@ -45,11 +95,18 @@ class Home extends React.Component {
       .then((data) => {
         this.setState({
           videoInfo: data,
-          gotInfo: true,
+          gotVideoInfo: true,
           startLoader: false,
         });
+        if (window.screen.availWidth > 600) this.adjustClipHeight(600);
+        else this.adjustClipHeight(850);
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        this.setState({ gotVideoInfo: false, startLoader: false });
+        if (window.screen.availWidth > 600) this.adjustClipHeight(400);
+        else this.adjustClipHeight(350);
+        console.log(e);
+      });
   };
   render() {
     return (
@@ -60,14 +117,18 @@ class Home extends React.Component {
             onInput={() => this.getURL()}
             onKeyPress={(e) => {
               if (e.key === "Enter") {
-                this.getVideoInfo();
+                this.checkLinkType();
               }
             }}
             ref={this.inputRef}
             type="text"
             placeholder="Paste your video link here"
           />
-          <button className="btn btn-primary" onClick={this.getVideoInfo} disabled={this.state.hasError}>
+          <button
+            className="btn btn-primary"
+            onClick={this.checkLinkType}
+            disabled={this.state.hasError}
+          >
             Start
           </button>
           <div className="loading">
@@ -78,8 +139,16 @@ class Home extends React.Component {
             )}
           </div>
         </div>
-        {this.state.gotInfo && (
-          <List key={this.state.url} data={this.state.videoInfo} videoURL={this.state.url} />
+        {this.state.isVideoTypeLink && this.state.gotVideoInfo ? (
+          <List
+            key={this.state.url}
+            data={this.state.videoInfo}
+            videoURL={this.state.url}
+          />
+        ) : (
+          this.state.gotPlayListInfo && (
+            <Playlist playlistInfo={this.state.playListInfo} />
+          )
         )}
       </div>
     );

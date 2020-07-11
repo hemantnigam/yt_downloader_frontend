@@ -7,6 +7,12 @@
   /* align-items: center; */
   width: 500px;
 }
+.text-align {
+  text-align: center;
+}
+.no-codec {
+  font-size: 0.6rem;
+}
 .tab {
   padding-top: 30px;
   color: white;
@@ -42,23 +48,29 @@
   border: 0px;
   border-top: none;
 }
-.tabcontent img {
+.tabcontent .img {
   height: 110px;
   width: 200px;
 }
-
+.tabcontent .playlist-loader {
+  background-color: black;
+  opacity: 0.2;
+}
+.justify-content-evenly {
+  justify-content: space-evenly;
+}
+.playlist-buttons-content {
+  flex: 2;
+}
 .list-item-img {
   height: 20px;
   width: 40px;
 }
-.video-container .video-content {
-  flex: 2;
-}
+
 .dropdown-menu {
   max-height: 200px;
   overflow-y: auto;
   width: 180px;
-  overflow-x: hidden;
 }
 
 @media only screen and (max-width: 600px) {
@@ -81,10 +93,19 @@
   .video-container > div > button {
     margin-bottom: 10px;
   }
-  .video-container .video-content button {
+  .playlist-buttons-content{
+    margin-top: 10px;
+  }
+  .playlist-buttons-content button {
     margin: 5px;
   }
-  .video-container .video-content a {
+  .playlist-buttons-content label {
+    margin: 5px;
+  }
+  .playlist-buttons-content a {
+    margin: 5px;
+  }
+  .playlist-buttons-content .select-label {
     margin: 5px;
   }
 }

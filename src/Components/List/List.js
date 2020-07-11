@@ -15,7 +15,6 @@ class List extends React.Component {
       if (a.height > b.height) return 1;
       return -1;
     });
-
     this.setState({
       selectedVideo: videoArr[0].url,
       selectedFormat: videoArr[0].qualityLabel,
@@ -24,6 +23,10 @@ class List extends React.Component {
 
     document.getElementsByClassName("tablinks")[0].click();
   }
+
+  downloadAudio = () => {
+    window.location.href = `https://warm-ocean-51847.herokuapp.com/downloadAudio?url=${this.props.videoURL}`;
+  };
 
   formatTitle = (title) => {
     if (title.length > 25) {
@@ -54,7 +57,6 @@ class List extends React.Component {
   };
 
   downloadVideo = () => {
-    console.log(this.state.selectedVideo);
     window.location.href = `https://warm-ocean-51847.herokuapp.com/downloadVideo?url=${this.props.videoURL}&itag=${this.state.selectedITag}`;
   };
 
@@ -82,58 +84,72 @@ class List extends React.Component {
               <span>{this.props.data.title}</span>
             </div>
             <div className="video-container pt-2 d-flex justify-content-between">
-              <img className="mr-4" alt="thumbnail not available" src={this.props.data.thumbnail.url} />
-              <div className="d-flex flex-column justify-content-between">
-                <div className="dropdown">
-                  <button
-                    className="btn btn-secondary btn-sm dropdown-toggle"
-                    type="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Format: {this.state.selectedFormat}
-                  </button>
-                  <div className="dropdown-menu">
-                    {this.props.data.video
-                      .sort((a, b) => {
-                        if (a.height > b.height) return 1;
-                        return -1;
-                      })
-                      .map((video, index) => {
-                        return (
-                          <a
-                            onClick={() => this.selectFormat(video)}
-                            key={index}
-                            className="dropdown-item d-flex justify-content-between align-items-center"
-                            href={() => false}
-                          >
-                            {video.qualityLabel} - {video.container}
-                            {!video.audioCodec && (
-                              <i
-                                className="fas fa-volume-mute"
-                                style={{ color: "red" }}
-                              ></i>
-                            )}
-                          </a>
-                        );
-                      })}
+              <img
+                className="mr-4"
+                alt="thumbnail not available"
+                src={this.props.data.thumbnail.url}
+              />
+              <div className="mr-4 video-content d-flex flex-column justify-content-around">
+                <div className="d-flex justify-content-evenly">
+                  <div className="dropdown">
+                    <button
+                      className="btn btn-secondary btn-sm dropdown-toggle"
+                      type="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      Format: {this.state.selectedFormat}
+                    </button>
+                    <div className="dropdown-menu">
+                      {this.props.data.video
+                        .sort((a, b) => {
+                          if (a.height > b.height) return 1;
+                          return -1;
+                        })
+                        .map((video, index) => {
+                          return (
+                            <a
+                              onClick={() => this.selectFormat(video)}
+                              key={index}
+                              className="dropdown-item d-flex justify-content-between align-items-center"
+                              href={() => false}
+                            >
+                              {video.qualityLabel} - {video.container}
+                              {!video.audioCodec && (
+                                <i
+                                  className="fas fa-volume-mute"
+                                  style={{ color: "red" }}
+                                ></i>
+                              )}
+                            </a>
+                          );
+                        })}
+                    </div>
                   </div>
+                  <a
+                    href={this.state.selectedVideo}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="btn btn-secondary btn-sm"
+                  >
+                    Play Video
+                  </a>
                 </div>
-                <a
-                  href={this.state.selectedVideo}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  className="btn btn-secondary btn-sm"
-                >
-                  Play Video
-                </a>
-                <button
-                  onClick={this.downloadVideo}
-                  className="btn btn-secondary btn-sm"
-                >
-                  Download
-                </button>
+                <div className="d-flex justify-content-evenly">
+                  <button
+                    onClick={this.downloadAudio}
+                    className="btn btn-secondary btn-sm"
+                  >
+                    Download Mp3
+                  </button>
+                  <button
+                    onClick={this.downloadVideo}
+                    className="btn btn-secondary btn-sm"
+                  >
+                    Download
+                  </button>
+                </div>
               </div>
             </div>
           </div>
