@@ -5,4 +5,4 @@ Web View
 ![alt text](https://raw.githubusercontent.com/hemantnigam/yt_downloader_frontend/master/screenshots/web_search.jpg?raw=true "Web Search Screenshot")
 
 Mobile View
-![alt text](https://raw.githubusercontent.com/hemantnigam/yt_downloader_frontend/master/screenshots/mobile_view.jpeg?raw=true "Mobile Search Screenshot"){ width: 200px; }
+![alt text](https://raw.githubusercontent.com/hemantnigam/yt_downloader_frontend/master/screenshots/mobile_view.jpeg?raw=true "Mobile Search Screenshot")
