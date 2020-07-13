@@ -1,4 +1,4 @@
-YT Downloader is an online youtube downloader for downloading youtube videos and playlist. [YT Downloader](https://quizzical-bhabha-41dca2.netlify.app/)
+YT Downloader is an online youtube downloader for downloading youtube videos and playlist. [YT Downloader](https://yt-download.netlify.app/)
 
 <div>
   <img src="https://raw.githubusercontent.com/hemantnigam/yt_downloader_frontend/master/screenshots/mobile_view.jpeg?raw=true" width="300" height="500"/> 
