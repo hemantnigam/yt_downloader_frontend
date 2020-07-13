@@ -5,8 +5,6 @@ Web View
 ![alt text](https://raw.githubusercontent.com/hemantnigam/yt_downloader_frontend/master/screenshots/web_search.jpg?raw=true "Web Search Screenshot")
 
 Mobile View
-![alt text](https://raw.githubusercontent.com/hemantnigam/yt_downloader_frontend/master/screenshots/mobile_view.jpeg?raw=true "Mobile Search Screenshot")
-
 <div>
-<img src="https://raw.githubusercontent.com/hemantnigam/yt_downloader_frontend/master/screenshots/mobile_view.jpeg?raw=true" width="500" height="300"/>
+<img src="https://raw.githubusercontent.com/hemantnigam/yt_downloader_frontend/master/screenshots/mobile_view.jpeg?raw=true" width="300" height="500"/>
 </div>
