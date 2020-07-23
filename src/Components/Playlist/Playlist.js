@@ -12,6 +12,7 @@ export class Playlist extends Component {
       playlistVideo: {},
       gotVideoDetails: false,
       selectedIndex: 0,
+      videoURLPrefix: "https://www.youtube.com/watch?v=",
     };
   }
   getVideoInfo = async (index) => {
@@ -19,19 +20,17 @@ export class Playlist extends Component {
       axios
         .get("https://warm-ocean-51847.herokuapp.com/getInfo", {
           params: {
-            url: this.props.playlistInfo.items[this.state.selectedIndex].url,
+            url: this.state.videoURLPrefix+this.props.playlistInfo.videos[this.state.selectedIndex].id,
           },
         })
         .then((response) => response.data)
         .then((data) => {
-          console.log(data);
           if (data.video.length > 0) {
             let format = data.video.sort((a, b) => {
               if (a.height > b.height) return 1;
               return -1;
             })[0];
 
-            console.log(format);
             this.setState({
               playlistVideo: data,
               gotVideoDetails: true,
@@ -91,7 +90,7 @@ export class Playlist extends Component {
 
   downloadVideo = () => {
     window.location.href = `https://warm-ocean-51847.herokuapp.com/downloadVideo?url=${
-      this.props.playlistInfo.items[this.state.selectedIndex].url
+      this.state.videoURLPrefix+this.props.playlistInfo.videos[this.state.selectedIndex].id
     }&itag=${this.state.selectedITag}`;
   };
 
@@ -101,7 +100,7 @@ export class Playlist extends Component {
 
   downloadAudio = () => {
     window.location.href = `https://warm-ocean-51847.herokuapp.com/downloadAudio?url=${
-      this.props.playlistInfo.items[this.state.selectedIndex].url
+      this.state.videoURLPrefix+this.props.playlistInfo.videos[this.state.selectedIndex].id
     }`;
   };
 
@@ -143,7 +142,7 @@ export class Playlist extends Component {
                 <div className="playlist-buttons-content d-flex justify-content-evenly">
                   <div className="d-flex flex-column justify-content-evenly">
                     <div className="d-flex justify-content-center align-items-center">
-                      <label class="mb-0 select-label"> Select Video:</label>
+                      <label className="mb-0 select-label"> Select Video:</label>
                     </div>
                     {this.state.selectedVideo && (
                       <div className="dropdown">
@@ -201,13 +200,13 @@ export class Playlist extends Component {
                         aria-expanded="false"
                       >
                         {this.formatTitle(
-                          this.props.playlistInfo.items[
+                          this.props.playlistInfo.videos[
                             this.state.selectedIndex
                           ].title
                         )}
                       </button>
                       <div className="dropdown-menu">
-                        {this.props.playlistInfo.items.map((video, index) => {
+                        {this.props.playlistInfo.videos.map((video, index) => {
                           return (
                             <a
                               onClick={() =>

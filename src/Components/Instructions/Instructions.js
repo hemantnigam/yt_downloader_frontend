@@ -9,7 +9,7 @@ export class Instructions extends Component {
         <div className="instructions-content d-flex align-items-start mt-4">
           <div className="copy-text mr-4">
             <div className="d-flex justify-content-center align-items-center mb-2">
-              <i class="far fa-copy mr-2" style={{color:'blue'}}></i>
+              <i className="far fa-copy mr-2" style={{color:'blue'}}></i>
               <h3>Copy YouTube URL</h3>
             </div>
             <p>
@@ -20,7 +20,7 @@ export class Instructions extends Component {
 
           <div className="paste-text mr-4">
             <div className="d-flex justify-content-center align-items-center mb-2">
-              <i class="fas fa-mouse-pointer mr-2" style={{color:'orange'}}></i>
+              <i className="fas fa-mouse-pointer mr-2" style={{color:'orange'}}></i>
               <h3>Paste in search field</h3>
             </div>
             <p>
@@ -31,7 +31,7 @@ export class Instructions extends Component {
 
           <div className="download-text">
             <div className="d-flex justify-content-center align-items-center mb-2">
-              <i class="fas fa-download mr-2" style={{color:'green'}}></i>
+              <i className="fas fa-download mr-2" style={{color:'green'}}></i>
               <h3>Download Video</h3>
             </div>
             <p>

@@ -23,6 +23,11 @@ class Home extends React.Component {
   componentDidMount() {
     this.inputRef.current.focus();
   }
+
+  getPlInfo() {
+    
+  }
+
   getURL = () => {
     if (this.inputRef.current.value === "") {
       this.setState({
