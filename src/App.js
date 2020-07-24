@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import Home from "./Components/Home/Home";
 import Instructions from "./Components/Instructions/Instructions";
 
@@ -9,7 +9,7 @@ function App() {
     <div>
       <header className="header">
         <div className="label">
-          <img className="logo" src={logo} alt="Logo" />
+          {/* <img className="logo" src={logo} alt="Logo" /> */}
           YT Downloader
         </div>
       </header>
