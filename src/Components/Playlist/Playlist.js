@@ -18,9 +18,11 @@ export class Playlist extends Component {
   getVideoInfo = async (index) => {
     this.setState({ gotVideoDetails: false, selectedIndex: index }, () => {
       axios
-        .get("https://warm-ocean-51847.herokuapp.com/getInfo", {
+        .get("https://yt-downloader-ikvv.onrender.com/getInfo", {
           params: {
-            url: this.state.videoURLPrefix+this.props.playlistInfo.videos[this.state.selectedIndex].id,
+            url:
+              this.state.videoURLPrefix +
+              this.props.playlistInfo.videos[this.state.selectedIndex].id,
           },
         })
         .then((response) => response.data)
@@ -89,9 +91,13 @@ export class Playlist extends Component {
   };
 
   downloadVideo = () => {
-    window.location.href = `https://warm-ocean-51847.herokuapp.com/downloadVideo?url=${
-      this.state.videoURLPrefix+this.props.playlistInfo.videos[this.state.selectedIndex].id
-    }&itag=${this.state.selectedITag}`;
+    window.open(
+      `https://yt-downloader-ikvv.onrender.com/downloadVideo?url=${
+        this.state.videoURLPrefix +
+        this.props.playlistInfo.videos[this.state.selectedIndex].id
+      }&itag=${this.state.selectedITag}`,
+      "_blank"
+    );
   };
 
   selectVideoFromPlayList = (index) => {
@@ -99,9 +105,13 @@ export class Playlist extends Component {
   };
 
   downloadAudio = () => {
-    window.location.href = `https://warm-ocean-51847.herokuapp.com/downloadAudio?url=${
-      this.state.videoURLPrefix+this.props.playlistInfo.videos[this.state.selectedIndex].id
-    }`;
+    window.open(
+      `https://yt-downloader-ikvv.onrender.com/downloadAudio?url=${
+        this.state.videoURLPrefix +
+        this.props.playlistInfo.videos[this.state.selectedIndex].id
+      }`,
+      "_blank"
+    );
   };
 
   render() {

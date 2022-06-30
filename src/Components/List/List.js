@@ -25,7 +25,10 @@ class List extends React.Component {
   }
 
   downloadAudio = () => {
-    window.location.href = `https://warm-ocean-51847.herokuapp.com/downloadAudio?url=${this.props.videoURL}`;
+    window.open(
+      `https://yt-downloader-ikvv.onrender.com/downloadAudio?url=${this.props.videoURL}`,
+      "_blank"
+    );
   };
 
   formatTitle = (title) => {
@@ -57,7 +60,10 @@ class List extends React.Component {
   };
 
   downloadVideo = () => {
-    window.location.href = `https://warm-ocean-51847.herokuapp.com/downloadVideo?url=${this.props.videoURL}&itag=${this.state.selectedITag}`;
+    window.open(
+      `https://yt-downloader-ikvv.onrender.com/downloadVideo?url=${this.props.videoURL}&itag=${this.state.selectedITag}`,
+      "_blank"
+    );
   };
 
   render() {
